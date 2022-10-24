@@ -1,0 +1,17 @@
+.profile__image-view {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../../../images/editAvatar.svg);
+  background-size: 26px;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+.profile__image-view:hover {
+  opacity: 1;
+}

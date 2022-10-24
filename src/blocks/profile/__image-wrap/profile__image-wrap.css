@@ -1,0 +1,14 @@
+.profile__image-wrap {
+  margin-right: 30px;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media all and (max-width: 616px) {
+  .profile__image-wrap {
+    margin-right: 0;
+  }
+}

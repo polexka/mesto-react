@@ -1,0 +1,20 @@
+.card__reaction {
+  margin-bottom: 3px;
+  padding: 0;
+  width: 22px;
+  height: 19px;
+  /* position: relative;
+  bottom: 30px;
+  right: 20px; */
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url(../../../images/heartIcon.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: opacity 0.5s;
+}
+
+.card__reaction:hover {
+  opacity: 0.5;
+}

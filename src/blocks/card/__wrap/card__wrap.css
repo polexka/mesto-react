@@ -1,0 +1,9 @@
+.card__wrap {
+  display: flex;
+}
+
+@media all and (max-width: 616px) {
+  .card__wrap {
+    align-items: center;
+  }
+}

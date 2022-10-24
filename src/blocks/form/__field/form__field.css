@@ -1,0 +1,12 @@
+.form__field {
+  margin: 0;
+  max-width: 358px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media all and (max-width: 616px) {
+  .form__field {
+    max-width: 238px;
+  }
+}
