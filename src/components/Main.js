@@ -1,23 +1,15 @@
-import React from 'react';
-import Api from '../utils/Api'
-import { baseUrl, token } from '../utils/constants';
+import React, { useState, useEffect } from 'react';
+import { api } from '../utils/Api'
 import Card from './Card';
 
 function Main(props) {
-  const api = new Api({
-    baseUrl: baseUrl,
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    }
-  });
 
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
+  const [cards, setCards] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     api.getUserInfo()
       .then((res) => {
         setUserName(res.name);
@@ -26,12 +18,12 @@ function Main(props) {
       })
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     api.getInitialCards()
       .then((res) => {
         setCards([...res]);
       })
-  })
+  }, [])
 
   return (
     <main className="content">
@@ -58,7 +50,7 @@ function Main(props) {
       <section className="gallery">
         <ul className="cards">
           {cards.map((card) => (
-            <Card card={card} onCardClick={props.onCardClick} />
+            <Card card={card} onCardClick={props.onCardClick} key={card._id} />
           ))}
         </ul>
       </section>

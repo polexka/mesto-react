@@ -1,4 +1,6 @@
-export default class Api {
+import { baseUrl, token } from '../utils/constants';
+
+class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
@@ -80,3 +82,11 @@ export default class Api {
       .then(this._checkResponse);
   }
 }
+
+export const api = new Api({
+  baseUrl: baseUrl,
+  headers: {
+    authorization: token,
+    'Content-Type': 'application/json'
+  }
+});
