@@ -21,6 +21,9 @@ function App() {
       .then((res) => {
         setUser(res);
       })
+      .catch((err) => {
+        console.log(`Ошибка получения данных пользователя: ${err}`);
+      })
   }, [])
 
   const [isEditProfilePopupOpen, setEditProfilePopup] = useState(false);
@@ -48,16 +51,22 @@ function App() {
     api.updateUserInfo(data)
       .then((res) => {
         setUser(res);
+        closeAllPopups();
       })
-    closeAllPopups();
+      .catch((err) => {
+        console.log(`Ошибка обновления данных пользователя: ${err}`);
+      })
   }
 
   function handleUpdateAvatar(avatar) {
     api.updateAvatar(avatar)
       .then((res) => {
         setUser(res);
+        closeAllPopups();
       })
-    closeAllPopups();
+      .catch((err) => {
+        console.log(`Ошибка обновления аватара пользователя: ${err}`);
+      })
   }
 
   const [cards, setCards] = useState([]);
@@ -66,6 +75,9 @@ function App() {
     api.getInitialCards()
       .then((res) => {
         setCards([...res]);
+      })
+      .catch((err) => {
+        console.log(`Ошибка загрузки карточек: ${err}`);
       })
   }, [])
 
@@ -76,7 +88,10 @@ function App() {
       .then((newCard) => {
         // получаем ответ с массивом карточек, каждую из карточек проверяем на соответствие айди, если верно то перерисовываем карту
         setCards((state) => state.map((item) => item._id === card._id ? newCard : item));
-      });
+      })
+      .catch((err) => {
+        console.log(`Ошибка загрузки карточек: ${err}`);
+      })
   }
 
   function handleCardDelete(card) {
@@ -84,14 +99,21 @@ function App() {
       .then(() => {
         setCards((state) => state.filter((item) => (item._id !== card._id) ? item : null))
       })
+      .catch((err) => {
+        console.log(`Ошибка загрузки карточек: ${err}`);
+      })
   }
 
   function handleAddPlaceSubmit(data) {
     api.uploadCard(data)
       .then((res) => {
         setCards([res, ...cards]);
+        closeAllPopups();
       })
-    closeAllPopups();
+      .catch((err) => {
+        console.log(`Ошибка загрузки карточки: ${err}`);
+      })
+    return true;
   }
 
   function closeAllPopups() {
